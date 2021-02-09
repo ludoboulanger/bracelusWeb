@@ -1,0 +1,30 @@
+{
+  "name": "bracel-usweb",
+  "version": "0.0.0",
+  "description": "BracelUSWEB",
+  "main": "server.js",
+  "author": {
+    "name": ""
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "iojs": "^1.0.0",
+    "node-module": "^2.0.0",
+    "path": "^0.12.7",
+    "react": "~16.13.1",
+    "react-dom": "~16.13.1",
+    "source-map": "^0.6.1",
+    "style-loader": "^2.0.0",
+    "styled-components": "^5.2.1",
+    "ts-loader": "^8.0.15",
+    "typescript": "~3.8.3",
+    "webpack": "~4.42.1",
+    "webpack-cli": "~3.3.11"
+  },
+  "scripts": {
+    "build": "webpack-cli app.tsx --config webpack-config.js"
+  },
+  "devDependencies": {
+    "css-loader": "^5.0.2"
+  }
+}
