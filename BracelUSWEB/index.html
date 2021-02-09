@@ -1,12 +1,16 @@
-﻿<body style ="background-color: #00cc00">
-    
+﻿<body style="background-color: #00a759">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;1,300;1,600&display=swap');
+    </style>
+
     <div id="root"></div>
     <!-- scripts -->
     <script src="./dist/app-bundle.js"></script>
     <script>
         // Retourne l'etat des switch. DÃ©pendemment de la switch 0, l'affichage montre Mode jour ou mode nuit.
         // (Pourrait modifier le bakcground ou le theme de couleur de l'appli front-end dependemment du mode)
-        const ip_address = '192.168.1.14';
+        const ip_address = '192.168.1.10'; // A CHANGER DEPENDAMMENT DE VOTRE ADRESSE IP DE CARTE
 
         const update_switches = () => {
             const http = new XMLHttpRequest();
@@ -39,7 +43,12 @@
             http.send();
 
             http.onreadystatechange = function () {
-                document.getElementById("capt_mouv").innerHTML = http.responseText;
+                if (http.response) {
+                    let niv_act = JSON.parse(http.responseText).niveau;
+                    if (niv_act) {
+                        document.getElementById("capt_mouv").innerHTML = niv_act;
+                    }
+                }
             }
         }
 
@@ -52,7 +61,30 @@
             http.send();
 
             http.onreadystatechange = function () {
-                document.getElementById("bpm").innerHTML = http.responseText;
+                if (http.response) {
+                    let bpm = JSON.parse(http.responseText).bpm;
+                    if (bpm) {
+                        document.getElementById("bpm").innerHTML = bpm;
+                    }
+                }
+            }
+        }
+
+        const updateZone = () => {
+            // Retourne une donnee simulant taux d<oxygene dans le sang
+            const http = new XMLHttpRequest();
+            const url = 'http://' + ip_address + '/analyse/zone_cardiaque';
+
+            http.open("GET", url);
+            http.send();
+
+            http.onreadystatechange = function () {
+                if (http.response) {
+                    let zone = JSON.parse(http.responseText).zone;
+                    if (zone) {
+                        document.getElementById("zone").innerHTML = zone;
+                    }
+                }
             }
         }
 
@@ -65,7 +97,12 @@
             http.send();
 
             http.onreadystatechange = function () {
-                document.getElementById("o2").innerHTML = http.responseText;
+                if (http.response) {
+                    let o2 = JSON.parse(http.responseText).o2;
+                    if (o2) {
+                        document.getElementById("o2").innerHTML = o2;
+                    }
+                }
             }
         }
 
@@ -74,6 +111,7 @@
         window.setInterval(update_capt_mouv, 1000);
         window.setInterval(update_bpm, 1000);
         window.setInterval(update_o2, 1000);
+        window.setInterval(updateZone, 1000);
 
     </script>
 

@@ -12,11 +12,6 @@ const Wrapper = Styled.div`
   width: 100%;
   color: #ffffff;
   padding: 25px;
-  text-shadow:
-    -1px -1px 0 #000,
-    1px -1px 0 #000,
-    -1px 1px 0 #000,
-    1px 1px 0 #000;
 `;
 
 const Table = Styled.table`

@@ -119,7 +119,7 @@ var styled_components_1 = __webpack_require__(/*! styled-components */ "./node_m
 var Menu_1 = __webpack_require__(/*! ./src/component/Menu */ "./src/component/Menu.tsx");
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 var ReactDOM = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-var Wrapper = styled_components_1.default.div(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  width: 100%;\n  color: #ffffff;\n  padding: 25px;\n  text-shadow:\n    -1px -1px 0 #000,\n    1px -1px 0 #000,\n    -1px 1px 0 #000,\n    1px 1px 0 #000;\n"], ["\n  width: 100%;\n  color: #ffffff;\n  padding: 25px;\n  text-shadow:\n    -1px -1px 0 #000,\n    1px -1px 0 #000,\n    -1px 1px 0 #000,\n    1px 1px 0 #000;\n"])));
+var Wrapper = styled_components_1.default.div(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  width: 100%;\n  color: #ffffff;\n  padding: 25px;\n"], ["\n  width: 100%;\n  color: #ffffff;\n  padding: 25px;\n"])));
 var Table = styled_components_1.default.table(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n  width: 100%;\n"], ["\n  width: 100%;\n"])));
 var MenuColumn = styled_components_1.default.td(templateObject_3 || (templateObject_3 = __makeTemplateObject(["\n  width: 20%;\n"], ["\n  width: 20%;\n"])));
 var PageDemo1 = /** @class */ (function (_super) {
@@ -30052,9 +30052,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var styled_components_1 = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 var ReactDOM = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-var Wrapper = styled_components_1.default.div(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  padding: 45px;\n  background-color: #00e600;\n  margin: 25px;\n  color: #ffffff;\n  width: 80%;\n  border: 2px solid black;\n"], ["\n  padding: 45px;\n  background-color: #00e600;\n  margin: 25px;\n  color: #ffffff;\n  width: 80%;\n  border: 2px solid black;\n"])));
-var Title = styled_components_1.default.h1(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n  font-size: 50px;\n  text-align: center;\n"], ["\n  font-size: 50px;\n  text-align: center;\n"])));
-var Text = styled_components_1.default.p(templateObject_3 || (templateObject_3 = __makeTemplateObject(["\n  font-size: 20px;\n  text-align: left;\n"], ["\n  font-size: 20px;\n  text-align: left;\n"])));
+var Wrapper = styled_components_1.default.div(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  padding: 45px;\n  background-color: #2fb74b;\n  margin: 25px;\n  color: #ffffff;\n  width: 80%;\n  border: 2px solid black;\n  border-radius : 16px;\n  box-shadow: 5px 10px 18px rgba(0,0,0,0.4);\n"], ["\n  padding: 45px;\n  background-color: #2fb74b;\n  margin: 25px;\n  color: #ffffff;\n  width: 80%;\n  border: 2px solid black;\n  border-radius : 16px;\n  box-shadow: 5px 10px 18px rgba(0,0,0,0.4);\n"])));
+var Title = styled_components_1.default.h1(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n  font-family: \"Open Sans\";\n  font-size: 50px;\n  font-style: italic;\n  text-align: center;\n  color: #ffffff;\n  text-shadow:\n    -1px -1px 0 #000,\n    1px -1px 0 #000,\n    -1px 1px 0 #000,\n    1px 1px 0 #000;\n"], ["\n  font-family: \"Open Sans\";\n  font-size: 50px;\n  font-style: italic;\n  text-align: center;\n  color: #ffffff;\n  text-shadow:\n    -1px -1px 0 #000,\n    1px -1px 0 #000,\n    -1px 1px 0 #000,\n    1px 1px 0 #000;\n"])));
+var Text = styled_components_1.default.p(templateObject_3 || (templateObject_3 = __makeTemplateObject(["\n  font-family: \"Open Sans\";\n  font-size: 24px;\n  font-style: italic;\n  text-align: left;\n  color: #ffffff;\n"], ["\n  font-family: \"Open Sans\";\n  font-size: 24px;\n  font-style: italic;\n  text-align: left;\n  color: #ffffff;\n"])));
 var Acceuil = /** @class */ (function (_super) {
     __extends(Acceuil, _super);
     function Acceuil() {
@@ -30064,19 +30064,28 @@ var Acceuil = /** @class */ (function (_super) {
         return (React.createElement(Wrapper, null,
             React.createElement(Title, null, "Acceuil"),
             React.createElement(Text, null,
-                "L'\u00E9tat de l'interrupteur est : ",
+                "Mode",
+                " : ",
                 React.createElement("b", { id: "switches" }, "inconnu"),
                 " "),
             React.createElement(Text, null,
-                "L'\u00E9tat du capteur de mouvement est : ",
+                "Niveau d'activité physique",
+                " : ",
                 React.createElement("b", { id: "capt_mouv" }, "inconnu"),
                 " "),
             React.createElement(Text, null,
-                "L'\u00E9tat du capteur de Cardiaque est : ",
+                " ",
+                "Rythme Cardiaque moyen",
+                " : ",
                 React.createElement("b", { id: "bpm" }, "inconnu"),
                 " "),
             React.createElement(Text, null,
-                "L'\u00E9tat du capteur de O2 est : ",
+                "Zone cardiaque",
+                " : ",
+                React.createElement("b", { id: "zone" }, "inconnu")),
+            React.createElement(Text, null,
+                "Pourcentage d'oxygène dans le sang",
+                " : ",
                 React.createElement("b", { id: "o2" }, "inconnu"),
                 " ")));
     };
@@ -30118,7 +30127,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var styled_components_1 = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 var ReactDOM = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-var Title = styled_components_1.default.h1(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  font-size: 100px;\n  width: 90%;\n  background-color: #00e600;\n  text-align: center;\n  margin: 25px;\n  border: 2px solid black;\n"], ["\n  font-size: 100px;\n  width: 90%;\n  background-color: #00e600;\n  text-align: center;\n  margin: 25px;\n  border: 2px solid black;\n"])));
+var Title = styled_components_1.default.h1(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  font-size: 100px;\n  width: 90%;\n  text-align: center;\n  margin: 25px;\n  color: #ffffff;\n"], ["\n  font-size: 100px;\n  width: 90%;\n  text-align: center;\n  margin: 25px;\n  color: #ffffff;\n"])));
 var MainTitle = /** @class */ (function (_super) {
     __extends(MainTitle, _super);
     function MainTitle() {
@@ -30165,9 +30174,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var styled_components_1 = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 var ReactDOM = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-var Wrapper = styled_components_1.default.div(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  padding: 25px;\n  background-color: #00e600;\n  margin: 25px;\n  color: #ffffff;\n  border: 2px solid black;\n"], ["\n  padding: 25px;\n  background-color: #00e600;\n  margin: 25px;\n  color: #ffffff;\n  border: 2px solid black;\n"])));
-var Title = styled_components_1.default.h1(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n  font-size: 50px;\n  text-align: center;\n"], ["\n  font-size: 50px;\n  text-align: center;\n"])));
-var MenuItem = styled_components_1.default.p(templateObject_3 || (templateObject_3 = __makeTemplateObject(["\n  font-size: 20px;\n  text-align: center;\n  color: white;\n"], ["\n  font-size: 20px;\n  text-align: center;\n  color: white;\n"])));
+var Wrapper = styled_components_1.default.div(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  padding: 25px;\n  background-color: #2fb74b;\n  margin: 25px;\n  color: #ffffff;\n  border: 2px solid black;\n  border-radius : 16px;\n  box-shadow: 5px 10px 18px rgba(0,0,0,0.4);\n"], ["\n  padding: 25px;\n  background-color: #2fb74b;\n  margin: 25px;\n  color: #ffffff;\n  border: 2px solid black;\n  border-radius : 16px;\n  box-shadow: 5px 10px 18px rgba(0,0,0,0.4);\n"])));
+var Title = styled_components_1.default.h1(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n  font-family: \"Open Sans\";\n  font-size: 50px;\n  font-style: italic;\n  text-align: center;\n  color: #ffffff;\n  text-shadow:\n    -1px -1px 0 #000,\n    1px -1px 0 #000,\n    -1px 1px 0 #000,\n    1px 1px 0 #000;\n"], ["\n  font-family: \"Open Sans\";\n  font-size: 50px;\n  font-style: italic;\n  text-align: center;\n  color: #ffffff;\n  text-shadow:\n    -1px -1px 0 #000,\n    1px -1px 0 #000,\n    -1px 1px 0 #000,\n    1px 1px 0 #000;\n"])));
+var MenuItem = styled_components_1.default.p(templateObject_3 || (templateObject_3 = __makeTemplateObject(["\n  font-family: \"Open Sans\";\n  font-size: 20px;\n  font-style: italic;\n  text-align: center;\n  color: #ffffff;\n"], ["\n  font-family: \"Open Sans\";\n  font-size: 20px;\n  font-style: italic;\n  text-align: center;\n  color: #ffffff;\n"])));
+var MenuLink = styled_components_1.default.a(templateObject_4 || (templateObject_4 = __makeTemplateObject(["\n  text-decoration : none;\n  color: #ffffff;\n  font-style: italic;\n  font-family: \"Open-Sans\";\n"], ["\n  text-decoration : none;\n  color: #ffffff;\n  font-style: italic;\n  font-family: \"Open-Sans\";\n"])));
 var Menu = /** @class */ (function (_super) {
     __extends(Menu, _super);
     function Menu() {
@@ -30177,18 +30187,18 @@ var Menu = /** @class */ (function (_super) {
         return (React.createElement(Wrapper, null,
             React.createElement(Title, null, "Menu"),
             React.createElement(MenuItem, null,
-                React.createElement("a", { href: "url" }, "Acceuil")),
+                React.createElement(MenuLink, { href: "#" }, "Acceuil")),
             React.createElement(MenuItem, null,
-                React.createElement("a", { href: "url" }, "Etat de sommeil")),
+                React.createElement(MenuLink, { href: "#" }, "Etat de sommeil")),
             React.createElement(MenuItem, null,
-                React.createElement("a", { href: "url" }, "Activite physique")),
+                React.createElement(MenuLink, { href: "#" }, "Activite physique")),
             React.createElement(MenuItem, null,
-                React.createElement("a", { href: "url" }, "Controle"))));
+                React.createElement(MenuLink, { href: "#" }, "Controle"))));
     };
     return Menu;
 }(React.Component));
 exports.default = Menu;
-var templateObject_1, templateObject_2, templateObject_3;
+var templateObject_1, templateObject_2, templateObject_3, templateObject_4;
 
 
 /***/ })
