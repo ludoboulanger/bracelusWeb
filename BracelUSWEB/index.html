@@ -52,6 +52,26 @@
             }
         }
 
+        const get_rappel = () => {
+            // En gros retournes si l<usager devrait avoir un rappel ou non de bouger
+            const http = new XMLHttpRequest();
+            const url = 'http://' + ip_address + '/analyse/rappel';
+
+            http.open("GET", url);
+            http.send();
+
+            http.onreadystatechange = function () {
+                if (http.response) {
+                    let niv_act = JSON.parse(http.responseText).rappel;
+                    if (niv_act) {
+                        document.getElementById("rappel").innerHTML = "Oui";
+                    } else {
+                        document.getElementById("rappel").innerHTML = "Non";
+                    }
+                }
+            }
+        }
+
         const update_bpm = () => {
             // Retourne une donnee provenant dun electro cardiogramme simule
             const http = new XMLHttpRequest();
@@ -112,6 +132,7 @@
         window.setInterval(update_bpm, 1000);
         window.setInterval(update_o2, 1000);
         window.setInterval(updateZone, 1000);
+        window.setInterval(get_rappel, 60000);
 
     </script>
 
