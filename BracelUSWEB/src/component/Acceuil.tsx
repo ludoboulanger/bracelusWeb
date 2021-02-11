@@ -50,6 +50,8 @@ export default class Acceuil extends React.Component {
 
                 <Text>{"Niveau d'activité physique"} : <b id="capt_mouv">inconnu</b> </Text>
 
+                <Text>{"Besoin de rappel de bouger ?"} : <b id="rappel">inconnu</b> </Text>
+
                 <Text> {"Rythme Cardiaque moyen"} : <b id="bpm">inconnu</b> </Text>
 
                 <Text>{ "Zone cardiaque"} : <b id="zone">inconnu</b></Text>
