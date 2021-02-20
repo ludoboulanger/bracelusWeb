@@ -49,13 +49,13 @@ export default class Menu extends React.Component {
             <Wrapper>
                 <Title>Menu</Title>
 
-                <MenuItem><MenuLink href="#">Acceuil</MenuLink></MenuItem>
+                <MenuItem><MenuLink href="index.html">Acceuil</MenuLink></MenuItem>
 
-                <MenuItem><MenuLink href="#">Etat de sommeil</MenuLink></MenuItem>
+                <MenuItem><MenuLink href="EtatDeSommeil.html">Etat de sommeil</MenuLink></MenuItem>
 
-                <MenuItem><MenuLink href="#">Activite physique</MenuLink></MenuItem>
+                <MenuItem><MenuLink href="ActivitePhysique.html">Activite physique</MenuLink></MenuItem>
 
-                <MenuItem><MenuLink href="#">Controle</MenuLink></MenuItem>
+                <MenuItem><MenuLink href="Controle.html">Controle</MenuLink></MenuItem>
 
             </Wrapper>
         );

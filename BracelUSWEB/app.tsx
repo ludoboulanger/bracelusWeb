@@ -2,6 +2,7 @@ import MainTitle from './src/component/MainTitle';
 import Acceuil from './src/component/Acceuil';
 import Styled from 'styled-components';
 import Menu from './src/component/Menu';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 declare var require: any
 
@@ -26,16 +27,19 @@ const MenuColumn = Styled.td`
 export class PageDemo1 extends React.Component {
     render() {
         return (
-            <Wrapper>
-                <MainTitle />
-                <Table>
-                    <tr>
-                        <MenuColumn><Menu /></MenuColumn>
-                        <td><Acceuil /></td>
-                    </tr>
-                </Table>
-                
-            </Wrapper>
+            <Router>
+                <Wrapper>
+                    <MainTitle />
+                    <Table>
+                        <tr>
+                            <MenuColumn><Menu /></MenuColumn>
+                            <td>
+                                <Route path="/index.html" component={Acceuil} />
+                            </td>
+                        </tr>
+                    </Table>
+                </Wrapper>
+            </Router>
         );
     }
 }

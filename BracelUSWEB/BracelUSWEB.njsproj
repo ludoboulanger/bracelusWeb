@@ -32,6 +32,9 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="Controle.html" />
+    <Content Include="ActivitePhysique.html" />
+    <Content Include="EtatDeSommeil.html" />
     <Content Include="index.html">
       <SubType>Code</SubType>
     </Content>
