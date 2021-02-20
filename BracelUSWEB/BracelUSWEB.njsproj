@@ -55,6 +55,9 @@
     <TypeScriptCompile Include="app.tsx">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="src\component\ActivitePhysique.tsx" />
+    <TypeScriptCompile Include="src\component\Controle.tsx" />
+    <TypeScriptCompile Include="src\component\EtatDeSommeil.tsx" />
     <TypeScriptCompile Include="src\component\MainTitle.tsx">
       <SubType>Code</SubType>
     </TypeScriptCompile>
