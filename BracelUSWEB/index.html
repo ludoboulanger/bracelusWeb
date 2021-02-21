@@ -63,7 +63,7 @@
             http.onreadystatechange = function () {
                 if (http.response) {
                     let niv_act = JSON.parse(http.responseText).rappel;
-                    if (niv_act) {
+                    if (niv_act === 1) {
                         document.getElementById("rappel").innerHTML = "Oui";
                     } else {
                         document.getElementById("rappel").innerHTML = "Non";
@@ -128,7 +128,7 @@
 
 
         window.setInterval(update_switches, 500);
-        window.setInterval(update_capt_mouv, 1000);
+        window.setInterval(update_capt_mouv, 10);
         window.setInterval(update_bpm, 1000);
         window.setInterval(update_o2, 1000);
         window.setInterval(updateZone, 1000);
