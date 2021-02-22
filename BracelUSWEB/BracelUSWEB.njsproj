@@ -41,6 +41,9 @@
     <Content Include="server.js" />
     <Content Include="package.json" />
     <Content Include="README.md" />
+    <Content Include="src\js\app.tsx" />
+    <Content Include="src\js\dbfetch.js" />
+    <Content Include="src\js\index.js" />
     <Content Include="tsconfig.json">
       <SubType>Code</SubType>
     </Content>
@@ -69,6 +72,7 @@
     <Folder Include="dist\" />
     <Folder Include="src\" />
     <Folder Include="src\component\" />
+    <Folder Include="src\js\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
   <ProjectExtensions>

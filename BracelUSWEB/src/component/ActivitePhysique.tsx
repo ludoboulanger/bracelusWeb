@@ -1,4 +1,6 @@
 import Styled from 'styled-components';
+import App from '../js/app';
+
 
 declare var require: any
 
@@ -76,7 +78,7 @@ export default class ActivitePhysique extends React.Component {
             <Wrapper>
 
                 <Title>Activite Pysique</Title>
-
+                
                 <Text>{"Niveau d'activité physique"} : <b id="capt_mouv">inconnu</b> </Text>
 
                 <Text>{"Besoin de rappel de bouger ?"} : <b id="rappel">inconnu</b> </Text>
