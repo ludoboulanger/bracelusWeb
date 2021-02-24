@@ -47,9 +47,9 @@ export default class EtatdeSommeil extends React.Component {
 		const options = {
 			animationEnabled: true,
 			exportEnabled: true,
-			theme: "dark2", // "light1", "dark1", "dark2"
+			theme: "light1", // "light1", "dark1", "dark2"
 			title: {
-				text: "Trip Expenses"
+				text: "Etat Sommeil"
 			},
 			data: [{
 				type: "pie",

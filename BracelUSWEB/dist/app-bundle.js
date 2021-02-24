@@ -35526,7 +35526,6 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var styled_components_1 = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
-var app_1 = __webpack_require__(/*! ../js/app */ "./src/js/app.tsx");
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 var ReactDOM = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 var Component = React.Component;
@@ -35568,7 +35567,6 @@ var ActivitePhysique = /** @class */ (function (_super) {
         };
         return (React.createElement(Wrapper, null,
             React.createElement(Title, null, "Activite Pysique"),
-            React.createElement(app_1.default, null),
             React.createElement(Text, null,
                 "Niveau d'activit� physique",
                 " : ",
@@ -35700,9 +35698,9 @@ var EtatdeSommeil = /** @class */ (function (_super) {
         var options = {
             animationEnabled: true,
             exportEnabled: true,
-            theme: "dark2",
+            theme: "light1",
             title: {
-                text: "Trip Expenses"
+                text: "Etat Sommeil"
             },
             data: [{
                     type: "pie",
@@ -35837,40 +35835,6 @@ var Menu = /** @class */ (function (_super) {
 }(React.Component));
 exports.default = Menu;
 var templateObject_1, templateObject_2, templateObject_3, templateObject_4;
-
-
-/***/ }),
-
-/***/ "./src/js/app.tsx":
-/*!************************!*\
-  !*** ./src/js/app.tsx ***!
-  \************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-function App() {
-    var _a = react_1.useState(false), table = _a[0], setActivitePhysique = _a[1];
-    react_1.useEffect(function () {
-        getActivitePhysique();
-    }, []);
-    function getActivitePhysique() {
-        fetch('http://localhost:3001')
-            .then(function (response) {
-            return response.text();
-        })
-            .then(function (data) {
-            setActivitePhysique(data);
-        });
-    }
-    return (react_1.default.createElement("div", null,
-        table ? table : 'There is no data available',
-        react_1.default.createElement("br", null)));
-}
-exports.default = App;
 
 
 /***/ })

@@ -5,7 +5,7 @@ import EtatDeSommeil from './src/component/EtatDeSommeil';
 import Controle from './src/component/Controle';
 import Styled from 'styled-components';
 import Menu from './src/component/Menu';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 
 declare var require: any
 
