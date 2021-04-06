@@ -1,84 +1,102 @@
-CREATE DATABASE BracelusBD;
+-- Database name : BracelusDB
 
 CREATE TABLE ModeSommeil
 (
-  ID_ModeSom INT NOT NULL,
+  ID_ModeSom SERIAL,
   Nom VARCHAR(100) NOT NULL,
   PRIMARY KEY (ID_ModeSom)
 );
 
 CREATE TABLE EtatSommeil
 (
-  ID_EtatSom INT NOT NULL,
+  ID_EtatSom SERIAL,
   Nom VARCHAR(100) NOT NULL,
   PRIMARY KEY (ID_EtatSom)
 );
 
 CREATE TABLE ActivitePhysique
 (
-  ID_ActPhys INT NOT NULL,
+  ID_ActPhys SERIAL,
   Nom VARCHAR(100) NOT NULL,
   PRIMARY KEY (ID_ActPhys)
 );
 
 CREATE TABLE Utilisateur
 (
-  ID INT NOT NULL,
+  ID_Utilisateur SERIAL,
   Prenom VARCHAR(100) NOT NULL,
   Nom VARCHAR(100) NOT NULL,
   ID_ModeSom INT NOT NULL,
-  ID_EtatSom INT NOT NULL,
+  PRIMARY KEY (ID_Utilisateur),
+  FOREIGN KEY (ID_ModeSom) REFERENCES ModeSommeil(ID_ModeSom)
+);
+
+CREATE TABLE LogCaloriesBrulees
+(
+  ID_LogCalBrul SERIAL,
+  Date VARCHAR(100) NOT NULL,
+  Nombre INT NOT NULL,
+  ID_Utilisateur INT NOT NULL,
+  PRIMARY KEY (ID_LogCalBrul),
+  FOREIGN KEY (ID_Utilisateur) REFERENCES Utilisateur(ID_Utilisateur)
+);
+
+CREATE TABLE LogNiveauOxygene
+(
+  ID_LogNivOxy SERIAL,
+  Date VARCHAR(100) NOT NULL,
+  Nombre INT NOT NULL,
+  ID_Utilisateur INT NOT NULL,
+  PRIMARY KEY (ID_LogNivOxy),
+  FOREIGN KEY (ID_Utilisateur) REFERENCES Utilisateur(ID_Utilisateur)
+);
+
+CREATE TABLE LogNiveauCardiaque
+(
+  ID_LogNivCard SERIAL,
+  Date VARCHAR(100) NOT NULL,
+  Nombre INT NOT NULL,
+  ID_Utilisateur INT NOT NULL,
+  PRIMARY KEY (ID_LogNivCard),
+  FOREIGN KEY (ID_Utilisateur) REFERENCES Utilisateur(ID_Utilisateur)
+);
+
+CREATE TABLE LogActivitePhysique
+(
+  ID_LogActPhys SERIAL,
+  Date VARCHAR(100) NOT NULL,
   ID_ActPhys INT NOT NULL,
-  PRIMARY KEY (ID),
-  FOREIGN KEY (ID_ModeSom) REFERENCES ModeSommeil(ID_ModeSom),
+  ID_Utilisateur INT NOT NULL,
+  PRIMARY KEY (ID_LogActPhys),
+  FOREIGN KEY (ID_ActPhys) REFERENCES ActivitePhysique(ID_ActPhys),
+  FOREIGN KEY (ID_Utilisateur) REFERENCES Utilisateur(ID_Utilisateur)
+);
+
+CREATE TABLE LogEtatSommeil
+(
+  ID_LogEtatSom SERIAL,
+  Date VARCHAR(100) NOT NULL,
+  ID_EtatSom INT NOT NULL,
+  ID_Utilisateur INT NOT NULL,
+  PRIMARY KEY (ID_LogEtatSom),
   FOREIGN KEY (ID_EtatSom) REFERENCES EtatSommeil(ID_EtatSom),
-  FOREIGN KEY (ID_ActPhys) REFERENCES ActivitePhysique(ID_ActPhys)
+  FOREIGN KEY (ID_Utilisateur) REFERENCES Utilisateur(ID_Utilisateur)
 );
 
-CREATE TABLE CaloriesBrulees
-(
-  ID_CalBrul INT NOT NULL,
-  Nombre INT NOT NULL,
-  Date DATE NOT NULL,
-  ID INT NOT NULL,
-  PRIMARY KEY (ID_CalBrul),
-  FOREIGN KEY (ID) REFERENCES Utilisateur(ID)
-);
+INSERT INTO ModeSommeil VALUES (DEFAULT,'Aucun');
+INSERT INTO ModeSommeil VALUES (DEFAULT,'Jour');
+INSERT INTO ModeSommeil VALUES (DEFAULT,'Nuit');
 
-CREATE TABLE NiveauOxygene
-(
-  ID_NivOxy INT NOT NULL,
-  Date DATE NOT NULL,
-  Nombre INT NOT NULL,
-  ID INT NOT NULL,
-  PRIMARY KEY (ID_NivOxy),
-  FOREIGN KEY (ID) REFERENCES Utilisateur(ID)
-);
+INSERT INTO EtatSommeil VALUES (DEFAULT,'Aucun');
+INSERT INTO EtatSommeil VALUES (DEFAULT,'Endormissement');
+INSERT INTO EtatSommeil VALUES (DEFAULT,'Sommeil léger');
+INSERT INTO EtatSommeil VALUES (DEFAULT,'Sommeil profond');
+INSERT INTO EtatSommeil VALUES (DEFAULT,'Sommeil paradoxal');
 
-CREATE TABLE NiveauCardiaque
-(
-  ID_NivCard INT NOT NULL,
-  Nombre INT NOT NULL,
-  Date DATE NOT NULL,
-  ID INT NOT NULL,
-  PRIMARY KEY (ID_NivCard),
-  FOREIGN KEY (ID) REFERENCES Utilisateur(ID)
-);
+INSERT INTO ActivitePhysique VALUES (DEFAULT,'Aucun');
+INSERT INTO ActivitePhysique VALUES (DEFAULT,'Faible');
+INSERT INTO ActivitePhysique VALUES (DEFAULT,'Modéré');
+INSERT INTO ActivitePhysique VALUES (DEFAULT,'Élevée');
+INSERT INTO ActivitePhysique VALUES (DEFAULT,'Très élevée');
 
-INSERT INTO ModeSommeil VALUES (0, 'Aucun');
-INSERT INTO ModeSommeil VALUES (1, 'Jour');
-INSERT INTO ModeSommeil VALUES (2, 'Nuit');
-
-INSERT INTO EtatSommeil VALUES (0, 'Aucun');
-INSERT INTO EtatSommeil VALUES (1, 'Endormissement');
-INSERT INTO EtatSommeil VALUES (2, 'Sommeil léger');
-INSERT INTO EtatSommeil VALUES (3, 'Sommeil profond');
-INSERT INTO EtatSommeil VALUES (4, 'Sommeil paradoxal');
-
-INSERT INTO ActivitePhysique VALUES (0, 'Aucun');
-INSERT INTO ActivitePhysique VALUES (1, 'Faible');
-INSERT INTO ActivitePhysique VALUES (2, 'Modéré');
-INSERT INTO ActivitePhysique VALUES (3, 'Élevée');
-INSERT INTO ActivitePhysique VALUES (4, 'Très élevée');
-
-INSERT INTO Utilisateur VALUES (0, Tony, Stark, 0, 0, 0);
+INSERT INTO Utilisateur VALUES (DEFAULT,'Tony', 'Stark', 1);
