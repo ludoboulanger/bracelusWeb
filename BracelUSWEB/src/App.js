@@ -1,132 +1,188 @@
- /*import logo from "./logo.svg";
- import "./App.css";
- import React from "react";
- import { getBPM, getCapteurMouvement, getSwitches, getO2 } from "./util/api";
-
- export class App extends React.Component {
-   constructor() {
-     super();
-     this.state = {
-       switches: "",
-       capt_mouv: "",
-       bpm: "",
-       o2: "",
-     };
-   }
-
-   async componentDidMount() {
-     try {
-       setInterval(async () => {
-         this.setState({
-           switches: await getSwitches(),
-           capt_mouv: await getCapteurMouvement(),
-           bpm: await getBPM(),
-           o2: await getO2(),
-         });
-       }, 1000);
-     } catch (e) {
-       console.log(e);
-     }
-   }
-
-   render() {
-     const { switches, capt_mouv, bpm, o2 } = this.state;
-     return (
-       <>
-         <h1>BracelUS</h1>
-
-         <p>L'état des interrupteurs est : </p>
-         <b>
-           <p id="switches">{switches || "inconnu"}</p>
-         </b>
-
-         <p>L'état du capteur de mouvement : </p>
-         <b>
-           <p id="capt_mouv">{capt_mouv || "inconnu"}</p>
-         </b>
-
-         <p>L'état du capteur de Cardiaque : </p>
-         <b>
-           <p id="bpm">{bpm || "inconnu"}</p>
-         </b>
-
-         <p>L'état du capteur de O2 : </p>
-         <b>
-           <p id="o2">{o2 || "inconnu"}</p>
-         </b>
-       </>
-     );
-   }
- }
-
- export default App;*/
-
-import React from "react";
+// Importation des librairies
+import logo from "./logo.svg";
+import ReactDOM from 'react-dom';
+import React, { Component } from "react";
+import { getBPM, getCapteurMouvement, getSwitches, getO2 } from "./util/api";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import Db from "./Db";
 
-const App = () => (
-  <Router>
-        <div>
-            <h1>
-                BracelUS
-            </h1>
-            <table>
-                <td>
-                        <li>
-                            <Link to="/">Acceuil</Link>
-                        </li>
-                        <li>
-                            <Link to="/EtatDeSommeil">État de sommeil</Link>
-                        </li>
-                        <li>
-                            <Link to="/ActivitePhysique">Activité physique</Link>
-                        </li>
-                        <li>
-                            <Link to="/Controle">Contrôle</Link>
-                        </li>
-                </td>
-                <td>
-                    <Route exact path="/" component={Acceuil} />
-                    <Route path="/EtatDeSommeil" component={EtatDeSommeil} />
-                    <Route path="/ActivitePhysique" component={ActivitePhysique} />
-                    <Route path="/Controle" component={Controle} />
-                </td>
-            </table>
-    </div>
-  </Router>
-);
+// Déclaration des variables
+var CanvasJSReact = require('canvasjs-react-charts');
+var CanvasJS = CanvasJSReact.CanvasJS;
+var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
-const Acceuil = () => (
-  <div>
-        <h2>
-            Acceuil
-        </h2>
-        <p>L'état de l'interrupteur est : <b id="switches">inconnu</b> </p>
 
-        <p>L'état du capteur de mouvement est : <b id="capt_mouv">inconnu</b> </p>
 
-        <p>L'état du capteur de Cardiaque est : <b id="bpm">inconnu</b> </p>
+// Début de la classe principale. J'ai utilisé un "nouveau" template qui permet l'instanciation d'un
+// constructeur. Il y a donc 3 sections, constructor(), render() et return().
+export class App extends React.Component {
 
-        <p>L'état du capteur de O2 est : <b id="o2">inconnu</b> </p>
-  </div>
-);
+    // Constructeur appelé au début. On peut aussi créer des méthodes après le constructeur.
+    constructor() {
+        super();
 
-const EtatDeSommeil = () => (
-  <div>
-        <h2>État De Sommeil</h2>
-  </div>
-);
+        this.generateDataPoints = this.generateDataPoints.bind(this);
 
-const ActivitePhysique = () => (
-    <div>
-        <h2>Activité Physique</h2>
-    </div>
-);
+        this.state = {
+            switches: "",
+            capt_mouv: "",
+            bpm: "",
+            o2: "",
+        };
+    }
 
-const Controle = () => (
-    <div>
-        <h2>Contrôle</h2>
-    </div>
-);
+    
 
+    // Méthode utilisé pour créer des points aléatoire sur le graphique Activité physique.
+    // TODO: Doit être modifié pour aller chercher les données dans la BD.
+    generateDataPoints(noOfDps) {
+        var xVal = 1, yVal = 100;
+        var dps = [];
+        for (var i = 0; i < noOfDps; i++) {
+            yVal = yVal + Math.round(5 + Math.random() * (-5 - 5));
+            dps.push({ x: xVal, y: yVal });
+            xVal++;
+        }
+        return dps;
+    }
+
+    // Méthode qui ???
+    async componentDidMount() {
+        try {
+            setInterval(async () => {
+                this.setState({
+                    switches: await getSwitches(),
+                    capt_mouv: await getCapteurMouvement(),
+                    bpm: await getBPM(),
+                    o2: await getO2(),
+                });
+            }, 1000);
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    // Section qui permet de gérer l'affichage.
+    render() {
+        
+        
+
+        // Code html pour la section acceuil.
+        const Acceuil = () => (
+          <p>
+                <h2>Acceuil</h2>
+
+                L'état de l'interrupteur est : <b id="switches">inconnu</b><br/>
+
+                L'état du capteur de mouvement est : <b id="capt_mouv">inconnu</b><br/>
+
+                L'état du capteur de Cardiaque est : <b id="bpm">inconnu</b><br/>
+
+                L'état du capteur de O2 est : <b id="o2">inconnu</b><br/>
+          </p>
+        );
+
+        // Code html pour la section état de sommeil.
+        const EtatDeSommeil = () => (
+          <div>
+                <h2>État De Sommeil</h2>
+
+                {"Mode"} : <b id="switches">inconnu</b><br /><br />
+
+                <CanvasJSChart options={optionsPieChart} />
+          </div>
+        );
+
+        // Code html pour la section activité physique.
+        const ActivitePhysique = () => (
+            <div>
+                <h2>Activité Physique</h2>
+
+                {"Niveau d'activité physique"} : <b id="capt_mouv">inconnu</b><br />
+
+                {"Besoin de rappel de bouger ?"} : <b id="rappel">inconnu</b><br />
+
+                {"Rythme Cardiaque moyen"} : <b id="bpm">inconnu</b><br />
+
+                {"Zone cardiaque"} : <b id="zone">inconnu</b><br />
+
+                {"Pourcentage d'oxygène dans le sang"} : <b id="o2">inconnu</b><br /><br />
+
+                <CanvasJSChart options={optionsGraph} />
+            </div>
+        );
+
+        // Code html pour la section controle.
+        const Controle = () => (
+            <div>
+                <h2>Contrôle</h2>
+                <Db />
+            </div>
+        );
+
+        // Code qui permet d'initialiser le graphique état de sommeil.
+        const optionsPieChart = {
+            animationEnabled: true,
+            exportEnabled: true,
+            theme: "light1", // "light1", "dark1", "dark2"
+            title: {
+                text: "Etat Sommeil"
+            },
+            data: [{
+                type: "pie",
+                indexLabel: "{label}: {y}%",
+                startAngle: -90,
+                dataPoints: [
+                    { y: 30, label: "Eveil" },
+                    { y: 24, label: "Endormissement" },
+                    { y: 20, label: "Sommeil leger" },
+                    { y: 14, label: "Sommeil profond" },
+                    { y: 12, label: "Sommeil paradoxal" }
+                ]
+            }]
+        }
+
+        // Code qui permet d'initialiser le graphique activité physique.
+        const optionsGraph = {
+            theme: "light2", // "light1", "dark1", "dark2"
+            animationEnabled: true,
+            zoomEnabled: true,
+            title: {
+                text: "Rythme cardiaque"
+            },
+            data: [{
+                type: "area",
+                dataPoints: this.generateDataPoints(500)
+            }]
+        }
+
+        // Code pour mettre à jour les états.
+        const { switches, capt_mouv, bpm, o2 } = this.state;
+
+        // Section qui retourne le code html de la page entière.
+        return (
+            <Router>
+                <div>
+                    <h1>BracelUS</h1>
+                    <table>
+                        <td>
+                            <p>
+                                <Link to="/">Acceuil</Link><br />
+                                <Link to="/EtatDeSommeil">État de sommeil</Link><br />
+                                <Link to="/ActivitePhysique">Activité physique</Link><br />
+                                <Link to="/Controle">Contrôle</Link><br />
+                            </p>
+                        </td>
+                        <td>
+                            <Route exact path="/" component={Acceuil} />
+                            <Route path="/EtatDeSommeil" component={EtatDeSommeil} />
+                            <Route path="/ActivitePhysique" component={ActivitePhysique} />
+                            <Route path="/Controle" component={Controle} />
+                        </td>
+                    </table>
+                </div>
+            </Router>
+        );
+    }
+};
 export default App;
