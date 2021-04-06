@@ -50,23 +50,29 @@ export class App extends React.Component {
     async componentDidMount() {
         try {
             setInterval(async () => {
+                let switchesState = await getSwitches();
+                let capt_mouvState = await getCapteurMouvement();
+                let bpmState = await getBPM();
+                let o2State = await getO2();
+                // requetes DB
+
+
                 this.setState({
-                    switches: await getSwitches(),
-                    capt_mouv: await getCapteurMouvement(),
-                    bpm: await getBPM(),
-                    o2: await getO2(),
+                    switches: switchesState,
+                    capt_mouv: capt_mouvState,
+                    bpm: bpmState,
+                    o2: o2State,
                 });
             }, 1000);
         } catch (e) {
             console.log(e);
         }
+
     }
 
     // Section qui permet de gérer l'affichage.
     render() {
         
-        
-
         // Code html pour la section acceuil.
         const Acceuil = () => (
           <p>

@@ -176,35 +176,7 @@ function Db() {
             <button onClick={createLogActivitePhysique}>Ajouter nouvelle activite physique</button>
             <br />
 
-            <h3>Calories Brulees</h3>
-            <b>Variables:</b><br />
-            <b>id_logcalbrul:</b> ID unique auto-incremente.<br />
-            <b>date:</b> Date lors de l'envoie de la donnee.<br />
-            <b>nombre:</b> Nombre de calorie brulee lors de l'envoie de la donnee.<br />
-            <b>id_utilisateur:</b> ID unique de l'utilisateur. 1 = Tony Stark<br />
-            <br />
-            <b>Donnees:</b><br />
-            {calorieBrulee ? calorieBrulee : 'Aucune calorie brulee disponible'}
-            <br />
-            <br />
-            <button onClick={createLogCalorieBrulee}>Ajouter nouvelle calorie brulee</button>
-            <br />
-
-            <h3>Etat Sommeil</h3>
-            <b>Variables:</b><br />
-            <b>id_logetatsom:</b> ID unique auto-incremente.<br />
-            <b>date:</b> Date lors de l'envoie de la donnee.<br />
-            <b>id_etatsom:</b> 1 = Aucun / 2 = Endormissement / 3 = Sommeil leger / 4 = Sommeil profond / 5 = Sommeil paradoxal <br />
-            <b>id_utilisateur:</b> ID unique de l'utilisateur. 1 = Tony Stark<br />
-            <br />
-            <b>Donnees:</b><br />
-            {etatSommeil ? etatSommeil : 'Aucune etat de sommeil disponible'}
-            <br />
-            <br />
-            <button onClick={createLogEtatSommeil}>Ajouter nouvelle etat de sommeil</button>
-            <br />
-
-            <h3>Niveau Cardique</h3>
+            <h3>Niveau Cardiaque</h3>
             <b>Variables:</b><br />
             <b>id_lognivcard:</b> ID unique auto-incremente.<br />
             <b>date:</b> Date lors de l'envoie de la donnee.<br />
@@ -218,19 +190,7 @@ function Db() {
             <button onClick={createLogNiveauCardiaque}>Ajouter nouveau niveau cardiaque</button>
             <br />
 
-            <h3>Niveau Oxygene</h3>
-            <b>Variables:</b><br />
-            <b>id_lognivoxy:</b> ID unique auto-incremente.<br />
-            <b>date:</b> Date lors de l'envoie de la donnee.<br />
-            <b>nombre:</b> Niveau d'oxygene lors de l'envoie de la donnee.<br />
-            <b>id_utilisateur:</b> ID unique de l'utilisateur. 1 = Tony Stark<br />
-            <br />
-            <b>Donnees:</b><br />
-            {niveauOxygene ? niveauOxygene : 'Aucun niveau oxygene disponible'}
-            <br />
-            <br />
-            <button onClick={createLogNiveauOxygene}>Ajouter nouveau niveau oxygene</button>
-            <br />
+
 
         </div>
     );
