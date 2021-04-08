@@ -12,8 +12,6 @@ h1 {
     text-align: center;
     font-weight: bold;
     font-size: 40px;
-    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-    
 }
 h2 {
     font-family: Georgia, 'Times New Roman', Times, serif;
@@ -22,12 +20,13 @@ h2 {
 }
 
 p {
-    padding: 45px;
-    margin: 25px;
+    padding: 15px;
+    margin: 20px;
     border-radius: 16px;
     background-color: gainsboro;
     font-family: Georgia, 'Times New Roman', Times, serif;
     color: dimgray;
+    text-align: center;
 }
 
 a:link, a:visited {
