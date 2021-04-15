@@ -2,7 +2,7 @@
 import logo from "./logo.svg";
 import ReactDOM from 'react-dom';
 import React, { Component } from "react";
-import { getCapteurMouvement, getBPM, getRappelBouger } from "./util/api";
+import { getCapteurMouvement, getBPM, getRappelBouger, postOLED } from "./util/api";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Db from "./Db";
 
@@ -22,7 +22,8 @@ export class App extends React.Component {
         super();
 
         this.generateDataPoints = this.generateDataPoints.bind(this);
-        // this.getData = this.getData.bind(this);
+        this.mouvBtnClicked = this.mouvBtnClicked.bind(this);
+        this.cardiacBtnClicked = this.cardiacBtnClicked.bind(this);
 
         this.state = {
             rappel: "",
@@ -55,9 +56,6 @@ export class App extends React.Component {
                 let bpmState = await getBPM();
                 let rappelBouger = await getRappelBouger();
                 // requetes DB
-                // console.log("Rappel: ", rappelBouger);
-                // console.log("Capteur Mouvement: ", capt_mouvState);
-                // console.log("BPM: ", bpmState);
 
                 this.setState({
                     rappel: rappelBouger,
@@ -71,20 +69,39 @@ export class App extends React.Component {
 
     }
 
+    mouvBtnClicked() {
+        postOLED(1);
+    }
+
+    cardiacBtnClicked() {
+        postOLED(0);
+    }
+
     // Section qui permet de gérer l'affichage.
     render() {
 
         // Code html pour la section acceuil.
         const Acceuil = () => (
-          <p>
-                <h2>Acceuil</h2>
+          <div>
+            <p>
+              <h2>Acceuil</h2>
+              {"Niveau d'activité physique"} : <b>{this.state.capt_mouv ? this.state.capt_mouv : "inconnu"}</b><br />
 
-                L'état du capteur de mouvement est : <b id="capt_mouv">inconnu</b><br/>
+              {"Besoin de rappel de bouger ?"} : <b>{this.state.rappel ? this.state.rappel : "inconnu"}</b><br />
 
-                L'état du capteur de Cardiaque est : <b id="bpm">inconnu</b><br/>
+              {"Rythme Cardiaque moyen"} : <b>{this.state.bpm ? this.state.bpm : "inconnu"}</b><br />
+            </p>
 
-               Rappel de bouger ? <b id="rappel">inconnu</b><br/>
-          </p>
+            <button className="styledButton" onClick={this.cardiacBtnClicked}>
+                Affiche Rythme
+            </button>
+
+            <button className="styledButton" onClick={this.mouvBtnClicked}>
+                Affiche Mouvement
+            </button>
+
+
+          </div>
         );
 
         // Code html pour la section état de sommeil.
