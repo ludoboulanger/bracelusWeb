@@ -170,22 +170,17 @@ export class App extends React.Component {
             <Router>
                 <div>
                     <h1>BracelUS</h1>
-                    <table>
-                        <td>
-                            <p>
-                                <Link to="/">Acceuil</Link><br />
-                                <Link to="/EtatDeSommeil">État de sommeil</Link><br />
-                                <Link to="/ActivitePhysique">Activité physique</Link><br />
-                                <Link to="/Controle">Contrôle</Link><br />
-                            </p>
-                        </td>
-                        <td>
-                            <Route exact path="/" component={Acceuil} />
-                            <Route path="/EtatDeSommeil" component={EtatDeSommeil} />
-                            <Route path="/ActivitePhysique" component={ActivitePhysique} />
-                            <Route path="/Controle" component={Controle} />
-                        </td>
-                    </table>
+                    <p>
+                        <Link to="/">Acceuil</Link>
+                        <Link to="/EtatDeSommeil">État de sommeil</Link>
+                        <Link to="/ActivitePhysique">Activité physique</Link>
+                        <Link to="/Controle">Contrôle</Link>
+                    </p>
+
+                    <Route exact path="/" component={Acceuil} />
+                    <Route path="/EtatDeSommeil" component={EtatDeSommeil} />
+                    <Route path="/ActivitePhysique" component={ActivitePhysique} />
+                    <Route path="/Controle" component={Controle} />
                 </div>
             </Router>
         );
