@@ -1,22 +1,8 @@
-export const getSwitches = async () => {
-  const request = await fetch("http://127.0.0.1/cmd/sws");
-  const json = await request.json();
-
-  let mode = json.switches[3];
-
-  if (mode) {
-    return "Mode Jour";
-  } else {
-    return "Mode Nuit";
-  }
-};
-
 export const getCapteurMouvement = async () => {
   // Retourne une donnee simulant taux d'oxygene dans le sang
-  const request = await fetch("http://127.0.0.1:80/analyse/activite_physique");
+  const request = await fetch("http://192.168.1.10/analyse/activite_physique");
   const json = await request.json();
-
-  return json.responseText;
+  return json.niveau;
 };
 
 export const getBPM = async () => {
@@ -24,13 +10,42 @@ export const getBPM = async () => {
   const request = await fetch("http://192.168.1.10/analyse/bpm");
   const json = await request.json();
 
-  return json.responseText;
+  return json.bpm;
 };
 
-export const getO2 = async () => {
+export const getRappelBouger = async () => {
   // Retourne une donnee simulant taux d'oxygene dans le sang
-  const request = await fetch("http://192.168.1.10/analyse/o2");
+  const request = await fetch("http://192.168.1.10/analyse/rappel");
   const json = await request.json();
 
-  return json.responseText;
+  if (json.rappel === 1) {
+    return "Bouge!";
+  } else {
+    return "Non";
+  }
+
 };
+
+export const postOLED = (param) => {
+    const http = new XMLHttpRequest();
+    const endpoint=`${url}/oled/display`;
+
+    let data = {
+        mode : param
+    }
+
+    http.open('POST', endpoint, true);
+
+    // set headers
+    http.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+    // send request
+    http.send(JSON.stringify(data));
+
+    // listen for `load` event
+    http.onload = () => {
+        console.log(http.responseText);
+    }
+}
+
+const url='http://192.168.1.10';

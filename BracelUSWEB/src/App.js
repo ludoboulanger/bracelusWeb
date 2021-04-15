@@ -2,7 +2,7 @@
 import logo from "./logo.svg";
 import ReactDOM from 'react-dom';
 import React, { Component } from "react";
-import { getBPM, getCapteurMouvement, getSwitches, getO2 } from "./util/api";
+import { getCapteurMouvement, getBPM, getRappelBouger, postOLED } from "./util/api";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Db from "./Db";
 
@@ -22,12 +22,13 @@ export class App extends React.Component {
         super();
 
         this.generateDataPoints = this.generateDataPoints.bind(this);
+        this.mouvBtnClicked = this.mouvBtnClicked.bind(this);
+        this.cardiacBtnClicked = this.cardiacBtnClicked.bind(this);
 
         this.state = {
-            switches: "",
+            rappel: "",
             capt_mouv: "",
             bpm: "",
-            o2: "",
         };
     }
 
@@ -50,42 +51,57 @@ export class App extends React.Component {
     async componentDidMount() {
         try {
             setInterval(async () => {
-                let switchesState = await getSwitches();
+                //let rappel = await getRappelBouger();
                 let capt_mouvState = await getCapteurMouvement();
                 let bpmState = await getBPM();
-                let o2State = await getO2();
+                let rappelBouger = await getRappelBouger();
                 // requetes DB
 
-
                 this.setState({
-                    switches: switchesState,
+                    rappel: rappelBouger,
                     capt_mouv: capt_mouvState,
                     bpm: bpmState,
-                    o2: o2State,
                 });
-            }, 1000);
+            }, 2000);
         } catch (e) {
             console.log(e);
         }
 
     }
 
+    mouvBtnClicked() {
+        postOLED(1);
+    }
+
+    cardiacBtnClicked() {
+        postOLED(0);
+    }
+
     // Section qui permet de gérer l'affichage.
     render() {
-        
+
         // Code html pour la section acceuil.
         const Acceuil = () => (
-          <p>
-                <h2>Acceuil</h2>
+          <div>
+            <p>
+              <h2>Acceuil</h2>
+              {"Niveau d'activité physique"} : <b>{this.state.capt_mouv ? this.state.capt_mouv : "inconnu"}</b><br />
 
-                L'état de l'interrupteur est : <b id="switches">inconnu</b><br/>
+              {"Besoin de rappel de bouger ?"} : <b>{this.state.rappel ? this.state.rappel : "inconnu"}</b><br />
 
-                L'état du capteur de mouvement est : <b id="capt_mouv">inconnu</b><br/>
+              {"Rythme Cardiaque moyen"} : <b>{this.state.bpm ? this.state.bpm : "inconnu"}</b><br />
+            </p>
 
-                L'état du capteur de Cardiaque est : <b id="bpm">inconnu</b><br/>
+            <button className="styledButton" onClick={this.cardiacBtnClicked}>
+                Affiche Rythme
+            </button>
 
-                L'état du capteur de O2 est : <b id="o2">inconnu</b><br/>
-          </p>
+            <button className="styledButton" onClick={this.mouvBtnClicked}>
+                Affiche Mouvement
+            </button>
+
+
+          </div>
         );
 
         // Code html pour la section état de sommeil.
@@ -104,15 +120,11 @@ export class App extends React.Component {
             <div>
                 <h2>Activité Physique</h2>
 
-                {"Niveau d'activité physique"} : <b id="capt_mouv">inconnu</b><br />
+                {"Niveau d'activité physique"} : <b>{this.state.capt_mouv ? this.state.capt_mouv : "inconnu"}</b><br />
 
-                {"Besoin de rappel de bouger ?"} : <b id="rappel">inconnu</b><br />
+                {"Besoin de rappel de bouger ?"} : <b>{this.state.rappel ? this.state.rappel : "inconnu"}</b><br />
 
-                {"Rythme Cardiaque moyen"} : <b id="bpm">inconnu</b><br />
-
-                {"Zone cardiaque"} : <b id="zone">inconnu</b><br />
-
-                {"Pourcentage d'oxygène dans le sang"} : <b id="o2">inconnu</b><br /><br />
+                {"Rythme Cardiaque moyen"} : <b>{this.state.bpm ? this.state.bpm : "inconnu"}</b><br />
 
                 <CanvasJSChart options={optionsGraph} />
             </div>
