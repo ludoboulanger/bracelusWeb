@@ -2,10 +2,10 @@ const Pool = require('pg').Pool;
 
 const pool = new Pool({
     user: 'postgres',
-    password: 'admin',
+    password: 'admin', // admin
     host: 'localhost',
     database: 'BracelusDB',
-    port: 5432,
+    port: 5432, // 5432
 });
 
 const getLogActivitePhysique = () => {
