@@ -34,7 +34,7 @@ CREATE TABLE Utilisateur
 CREATE TABLE LogCaloriesBrulees
 (
   ID_LogCalBrul SERIAL,
-  Date VARCHAR(100) NOT NULL,
+  Date TIMESTAMP NOT NULL,
   Nombre INT NOT NULL,
   ID_Utilisateur INT NOT NULL,
   PRIMARY KEY (ID_LogCalBrul),
@@ -44,7 +44,7 @@ CREATE TABLE LogCaloriesBrulees
 CREATE TABLE LogNiveauOxygene
 (
   ID_LogNivOxy SERIAL,
-  Date VARCHAR(100) NOT NULL,
+  Date TIMESTAMP NOT NULL,
   Nombre INT NOT NULL,
   ID_Utilisateur INT NOT NULL,
   PRIMARY KEY (ID_LogNivOxy),
@@ -54,7 +54,7 @@ CREATE TABLE LogNiveauOxygene
 CREATE TABLE LogNiveauCardiaque
 (
   ID_LogNivCard SERIAL,
-  Date VARCHAR(100) NOT NULL,
+  Date TIMESTAMP NOT NULL,
   Nombre INT NOT NULL,
   ID_Utilisateur INT NOT NULL,
   PRIMARY KEY (ID_LogNivCard),
@@ -64,7 +64,7 @@ CREATE TABLE LogNiveauCardiaque
 CREATE TABLE LogActivitePhysique
 (
   ID_LogActPhys SERIAL,
-  Date VARCHAR(100) NOT NULL,
+  Date TIMESTAMP NOT NULL,
   ID_ActPhys INT NOT NULL,
   ID_Utilisateur INT NOT NULL,
   PRIMARY KEY (ID_LogActPhys),
@@ -75,7 +75,7 @@ CREATE TABLE LogActivitePhysique
 CREATE TABLE LogEtatSommeil
 (
   ID_LogEtatSom SERIAL,
-  Date VARCHAR(100) NOT NULL,
+  Date TIMESTAMP NOT NULL,
   ID_EtatSom INT NOT NULL,
   ID_Utilisateur INT NOT NULL,
   PRIMARY KEY (ID_LogEtatSom),

@@ -6,6 +6,9 @@ import { getCapteurMouvement, getBPM, getRappelBouger, postOLED, getLogActPhys, 
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Db from "./Db";
 import moment from 'moment';
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
 
 // Déclaration des variables
 var CanvasJSReact = require('canvasjs-react-charts');
@@ -32,6 +35,8 @@ export class App extends React.Component {
             bpm: "",
             act_phys: [],
             niv_card: [],
+            startDate: 1618516183000, // 15 avril 2021
+            endDate: new Date().getTime(),
         };
     }
 
@@ -41,9 +46,14 @@ export class App extends React.Component {
     // TODO: Doit être modifié pour aller chercher les données dans la BD.
     generateDataPoints() {
         var dps = [];
+        let startDate = new Date(this.state.startDate).getTime();
+        let endDate = new Date(this.state.endDate).getTime();
         for (var i = 0; i < this.state.niv_card.length; i++) {
+            let dateElem = new Date(this.state.niv_card[i].date).getTime();
+            if (dateElem >= startDate && dateElem <= endDate) {
+                dps.push({ x: i, y: this.state.niv_card[i].nombre });
+            }
             
-            dps.push({ x: i, y: this.state.niv_card[i].nombre });
 
         }
         return dps;
@@ -56,10 +66,16 @@ export class App extends React.Component {
     getStatusData(id) {
         let dataAmount = 0;
         let totalDataAmount = 0;
+        let startDate = new Date(this.state.startDate).getTime();
+        let endDate = new Date(this.state.endDate).getTime();
         for (let elem of this.state.act_phys) {
-            totalDataAmount++;
-            if (elem.id_actphys === id)
-                dataAmount++;
+            let dateElem = new Date(elem.date).getTime();
+            if (dateElem >= startDate && dateElem <= endDate) {
+                totalDataAmount++;
+                if (elem.id_actphys === id)
+                    dataAmount++;
+            }
+            
         }
         return (dataAmount * 100) / totalDataAmount;
     }
@@ -87,10 +103,10 @@ export class App extends React.Component {
                     niveau_activite_physique = 1;
                 }
 
-                let now =moment().format('YYYY-MM-DD HH:mm:ss');
+                let now = moment().format('YYYY-MM-DD h:mm:ss');
 
                 await createLogActPhys(now, niveau_activite_physique, 1); 
-                await createLogNivCard(now, bpmState, 1); 
+                await createLogNivCard(now, bpmState, 1);
                 
 
                 // requetes DB
@@ -168,6 +184,19 @@ export class App extends React.Component {
 
                 <br />
 
+                <table class="center">
+                    <td>
+                        Date début: <DatePicker selected={this.state.startDate} onChange={date => this.setState({ startDate: date })} />
+                    </td>
+
+                    <td>
+                        Date fin: <DatePicker selected={this.state.endDate} onChange={date => this.setState({ endDate: date })} />
+                    </td>
+                </table>
+                
+
+                <br />
+
                 <CanvasJSChart options={optionsGraph} />
 
                 <br />
@@ -186,6 +215,18 @@ export class App extends React.Component {
                 {"Besoin de rappel de bouger ?"} : <b>{this.state.rappel ? this.state.rappel : "inconnu"}</b><br />
 
                 {"Rythme Cardiaque moyen"} : <b>{this.state.bpm ? this.state.bpm : "inconnu"}</b><br />
+
+                <br />
+
+                <table class="center">
+                    <td>
+                        Date début: <DatePicker selected={this.state.startDate} onChange={date => this.setState({ startDate: date })} />
+                    </td>
+
+                    <td>
+                        Date fin: <DatePicker selected={this.state.endDate} onChange={date => this.setState({ endDate: date })} />
+                    </td>
+                </table>
 
                 <br />
 
