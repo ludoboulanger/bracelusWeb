@@ -93,10 +93,8 @@ INSERT INTO EtatSommeil VALUES (DEFAULT,'Sommeil léger');
 INSERT INTO EtatSommeil VALUES (DEFAULT,'Sommeil profond');
 INSERT INTO EtatSommeil VALUES (DEFAULT,'Sommeil paradoxal');
 
-INSERT INTO ActivitePhysique VALUES (DEFAULT,'Aucun');
-INSERT INTO ActivitePhysique VALUES (DEFAULT,'Faible');
+INSERT INTO ActivitePhysique VALUES (DEFAULT,'Sédentaire');
 INSERT INTO ActivitePhysique VALUES (DEFAULT,'Modéré');
 INSERT INTO ActivitePhysique VALUES (DEFAULT,'Élevée');
-INSERT INTO ActivitePhysique VALUES (DEFAULT,'Très élevée');
 
 INSERT INTO Utilisateur VALUES (DEFAULT,'Tony', 'Stark', 1);
