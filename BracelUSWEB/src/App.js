@@ -5,6 +5,7 @@ import React, { Component } from "react";
 import { getCapteurMouvement, getBPM, getRappelBouger, postOLED, getLogActPhys, getLogNivCard, createLogActPhys, createLogNivCard } from "./util/api";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Db from "./Db";
+import moment from 'moment';
 
 // Déclaration des variables
 var CanvasJSReact = require('canvasjs-react-charts');
@@ -57,7 +58,7 @@ export class App extends React.Component {
         let totalDataAmount = 0;
         for (let elem of this.state.act_phys) {
             totalDataAmount++;
-            if (elem.id_actphys == id)
+            if (elem.id_actphys === id)
                 dataAmount++;
         }
         return (dataAmount * 100) / totalDataAmount;
@@ -71,12 +72,25 @@ export class App extends React.Component {
             setInterval(async () => {
                 let actPhys = await getLogActPhys();
                 let nivCard = await getLogNivCard();
-                await createLogActPhys("2021-04-17 13:22:00", this.getRndInteger(1, 3), 1); 
-                await createLogNivCard("2021-04-17 13:22:00", this.getRndInteger(50, 120), 1); 
-                //let rappel = await getRappelBouger();
-                //let capt_mouvState = await getCapteurMouvement();
-                //let bpmState = await getBPM();
-                //let rappelBouger = await getRappelBouger();
+
+                let capt_mouvState = await getCapteurMouvement();
+                let bpmState = await getBPM();
+                let rappelBouger = await getRappelBouger();
+
+                let niveau_activite_physique = 1;
+
+                if (capt_mouvState === "Elevee") {
+                    niveau_activite_physique = 3;
+                } else if (capt_mouvState === "Moderee") {
+                    niveau_activite_physique = 2;
+                } else {
+                    niveau_activite_physique = 1;
+                }
+
+                let now =moment().format('YYYY-MM-DD HH:mm:ss');
+
+                await createLogActPhys(now, niveau_activite_physique, 1); 
+                await createLogNivCard(now, bpmState, 1); 
                 
 
                 // requetes DB
@@ -84,9 +98,9 @@ export class App extends React.Component {
                 this.setState({
                     act_phys: actPhys,
                     niv_card: nivCard,
-                    //rappel: rappelBouger,
-                    //capt_mouv: capt_mouvState,
-                    //bpm: bpmState,
+                    rappel: rappelBouger,
+                    capt_mouv: capt_mouvState,
+                    bpm: bpmState,
                 });
             }, 2000);
         } catch (e) {
