@@ -1,0 +1,64 @@
+body {
+    background-color: white;
+    text-align: center;
+}
+
+code {
+  font-family: source-code-pro, Consolas;
+}
+
+h1 {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: dimgray;
+    text-align: center;
+    font-weight: bold;
+    font-size: 40px;
+}
+h2 {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: dimgray;
+    text-align: center;
+}
+
+p {
+    padding: 15px;
+    margin: 20px;
+    border-radius: 16px;
+    background-color: gainsboro;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: dimgray;
+    text-align: center;
+}
+
+a:link, a:visited {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: dimgray;
+    padding: 10px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+a:hover, a:active {
+    background-color: lightcyan;
+}
+
+.styledButton {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: gainsboro;
+    margin: 12px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 4px rgba(0,0,0,0.4);
+    color: black;
+    cursor: pointer;
+    height: 50px;
+    outline: None !important;
+}
+
+.styledButton:active {
+    box-shadow: None;
+}
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+}

@@ -1,35 +1,55 @@
 {
-  "name": "bracel-usweb",
-  "version": "0.0.0",
-  "description": "BracelUSWEB",
-  "main": "server.js",
-  "author": {
-    "name": ""
-  },
+  "name": "s4-projet",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
+    "@testing-library/jest-dom": "^5.11.9",
+    "@testing-library/react": "^11.2.5",
+    "@testing-library/user-event": "^12.6.3",
     "canvasjs": "^1.8.3",
     "canvasjs-react-charts": "^1.0.5",
+    "cors": "^2.8.5",
+    "date-fns-tz": "^1.1.4",
     "express": "^4.17.1",
-    "iojs": "^1.0.0",
-    "node-module": "^2.0.0",
-    "path": "^0.12.7",
+    "Math": "^0.0.1-security",
+    "moment": "^2.29.1",
+    "nodemon": "^2.0.7",
     "pg": "^8.5.1",
-    "react": "~16.13.1",
-    "react-dom": "~16.13.1",
-    "react-is": "^17.0.1",
+    "prismic-reactjs": "^1.3.3",
+    "react": "^17.0.1",
+    "react-datepicker": "^3.7.0",
+    "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
-    "source-map": "^0.6.1",
-    "style-loader": "^2.0.0",
-    "styled-components": "^5.2.1",
-    "ts-loader": "^8.0.15",
-    "typescript": "~3.8.3",
-    "webpack": "~4.42.1",
-    "webpack-cli": "~3.3.11"
+    "react-scripts": "4.0.2",
+    "styled-components": "^5.2.3",
+    "web-vitals": "^1.1.0"
   },
   "scripts": {
-    "build": "webpack-cli app.tsx --config webpack-config.js"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
-  "devDependencies": {
-    "css-loader": "^5.0.2"
-  }
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC"
 }
